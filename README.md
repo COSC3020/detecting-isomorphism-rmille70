@@ -16,3 +16,5 @@ the function and run automatically when you commit through a GitHub action.
 ## Runtime Analysis
 
 What is the worst-case big $\Theta$ time complexity of your algorithm?
+
+- The worst-case big theta time complexity of this algorithm occurs when the input graphs have a high degree for most vertices and a specific difference in how a small subset of vertices are connected. This structural difference leads to a large number of unnecessary checks during the exploration of potential isomorphism, resulting in a worst-case time complexity bounded by $\Theta(V^V)$, where V is the number of vertices.
