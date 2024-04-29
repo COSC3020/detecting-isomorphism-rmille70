@@ -17,4 +17,4 @@ the function and run automatically when you commit through a GitHub action.
 
 What is the worst-case big $\Theta$ time complexity of your algorithm?
 
-- The worst-case big theta time complexity of this algorithm occurs when the input graphs have a high degree for most vertices and a specific difference in how a small subset of vertices are connected. This structural difference leads to a large number of unnecessary checks during the exploration of potential isomorphism, resulting in a worst-case time complexity bounded by $\Theta(V^V)$, where V is the number of vertices.
+- In the worst case, the checkIsomorph function explores many potentially invalid mappings due many vertices sharing the same degree. The outerloop of checkIsomorph would iterate through every possible vertex assignments for each vertex (v*v). The inner loop then iterates through each vertices edges, so thets $v^2 * e.$ Thus the worst-case time complexity is bounded by $\Theta(v^2 * e)$ where v is the number of vertices and e is the average number of edges per vertex.
