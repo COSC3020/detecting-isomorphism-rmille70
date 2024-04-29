@@ -4,9 +4,6 @@
 
 function are_isomorphic(graph1, graph2){
     if (graph1.length !== graph2.length) { return false; }
-    for (let i = 0; i < graph2.length; i++) {
-        if(graph1[i].length !== graph1[i].length) { return false; }
-    }
     return checkIsomorph(graph1, graph2, []);
 }
 
