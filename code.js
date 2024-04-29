@@ -4,31 +4,45 @@
 
 function are_isomorphic(graph1, graph2){
     if (graph1.length !== graph2.length) { return false; }
-    let map1 = Array(graph1.length).fill(-1);
-    let map2 = Array(graph2.length).fill(false)
-    return checkIsomorph(graph1, graph2, map1, map2, 0);
+    for (let i = 0; i < graph2.length; i++) {
+        if(graph1[i].length !== graph1[i].length) { return false; }
+    }
+    return checkIsomorph(graph1, graph2, []);
 }
 
-function checkIsomorph(graph1, graph2, map1, map2, vertex){
-    if (vertex == graph1.length) { return true; }
-    let next = graph1[vertex];
-    for(let i = 0; i < graph2.length; i++){
-        if(!map2[i]){
-            map1[vertex] = i;
-            map2[i] = true;
+function checkIsomorph(graph1, graph2, map){
+    if (Object.keys(map).length === graph1.length){
+        for(let v = 0; v < map; v++){
+            let next = graph1[v];
+            let mapped = map[v];
+            let compare = true;
+            if (next.length !== graph2[mapped].length) {
+                compare = false;
+            }
+            for (const n of next) {
+                const mappedNeighbor = mapping[n];
+                if (!graph2[mapped].includes(mappedNeighbor)) {
+                    compare = false;
+                }
+            }
+            if(!compare){ return false; }
         }
-        let allIsomorphs = true;
-        for(let j = 0; j < next.length; j++){
-            if(map1[j] == -1) { 
-                continue;
-            } else if(!graph2[i].includes(map1[j])) {
-                allIsomorphs = false;
-                break;
+        return true;
+    }
+    for(let i = 0; i < graph1.length; i++){
+        if(!map.hasOwnProperty(i)){
+            let v1 = i;
+            let d1 = graph1[v1].length;
+            for(let j = 0; j < graph2.length; j++){
+                if(graph2[j].length == d1 && !Object.values(map).includes(j)){
+                    let v2 = j;
+                    map[v1] = v2;
+                    if(checkIsomorph(graph1, graph2, map)){ return true; }
+                    delete map[v1];
+                    break;
+                }
             }
         }
-        if(allIsomorphs && checkIsomorph(graph1, graph2, map1, map2, vertex+1)){ return true; }
-        map1[vertex] = -1;
-        map2[i] = false;
     }
     return false;
 }
