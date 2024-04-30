@@ -17,4 +17,4 @@ the function and run automatically when you commit through a GitHub action.
 
 What is the worst-case big $\Theta$ time complexity of your algorithm?
 
-- In the worst case, the checkIsomorph function explores many potentially invalid mappings due many vertices sharing the same degree. The outerloop of checkIsomorph would iterate through every possible vertex assignments for each vertex ($v*v$). The inner loop then iterates through each vertices edges ($v^2 * e.$) Thus the worst-case time complexity is bounded by $\Theta(v^2 * e)$ where v is the number of vertices and e is the average number of edges per vertex.
+- In the worst case, we compare all vertices in graph1 to all vertices in graph2 (v*v), then in the recursive step, we check to see if that particular mapping works (v! possible mappings), thus the worst case time complexity can be bounded by $\Theta(v^2 * v!)$
